@@ -1,2 +1,3 @@
 export 'entities/entities.dart';
-export 'errors/domain_errors.dart';
+export 'domain_errors/domain_errors.dart';
+export 'repositories/repositories.dart';

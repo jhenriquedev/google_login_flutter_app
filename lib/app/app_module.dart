@@ -1,11 +1,13 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:google_login_app/app/app_widget.dart';
-import 'package:google_login_app/app/core/pages/splash/splash_page.dart';
+import 'package:google_login_app/app/core/core.dart';
 
 class AppModule extends Module {
   @override
-  List<Bind> get binds => [];
+  List<Bind> get binds => [
+    Bind((i) => Connectivity()), //Injeção de dependencia do connectivity 
+  ];
 
   @override
   List<ModularRoute> get routes => [
