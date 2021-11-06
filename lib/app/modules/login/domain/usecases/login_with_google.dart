@@ -1,6 +1,5 @@
 // ignore_for_file: unrelated_type_equality_checks
 
-import 'package:connectivity/connectivity.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_login_app/app/core/core.dart';
@@ -18,16 +17,14 @@ abstract class LoginWithGoogle {
 @Injectable() //permite a injeção de dependencia
 class LoginWithGoogleImpl implements LoginWithGoogle {
   final LoginRepository loginRepository;
-  final Connectivity connectivity;
+  final ConnectivityService connectivity;
 
   LoginWithGoogleImpl(this.loginRepository, this.connectivity);
 
   @override
   Future<Either<Failure, User>> call() async {
     //Validar se a conexão está com a rede está ativa
-    final result = connectivity.checkConnectivity();
-    //verifica se existe conexão
-    final isOnline = ( result == ConnectivityResult.wifi || result == ConnectivityResult.mobile );
+    final isOnline = await connectivity.isOnline();
 
     if (!isOnline) {
       return Left(ErrorLogin(message: Messages.OFFILINE_CONNECTION));
