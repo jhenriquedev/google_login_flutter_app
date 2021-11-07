@@ -19,7 +19,10 @@ class LoginWithGoogleImpl implements LoginWithGoogle {
   final LoginRepository loginRepository;
   final ConnectivityService connectivity;
 
-  LoginWithGoogleImpl(this.loginRepository, this.connectivity);
+  LoginWithGoogleImpl({
+    required this.loginRepository, 
+    required this.connectivity,
+  });
 
   @override
   Future<Either<Failure, User>> call() async {
@@ -30,6 +33,6 @@ class LoginWithGoogleImpl implements LoginWithGoogle {
       return Left(ErrorLogin(message: Messages.OFFILINE_CONNECTION));
     }
 
-    return loginRepository.executeLoginGoogle();
+    return await loginRepository.executeLoginGoogle();
   }
 }

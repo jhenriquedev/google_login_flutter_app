@@ -7,7 +7,9 @@ part of 'login_with_google.dart';
 // **************************************************************************
 
 final $LoginWithGoogleImpl = BindInject(
-  (i) => LoginWithGoogleImpl(i<LoginRepository>(), i<ConnectivityService>()),
+  (i) => LoginWithGoogleImpl(
+      loginRepository: i<LoginRepository>(),
+      connectivity: i<ConnectivityService>()),
   isSingleton: true,
   isLazy: true,
 );
